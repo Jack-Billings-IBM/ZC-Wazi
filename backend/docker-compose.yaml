@@ -1,0 +1,15 @@
+version: '3'
+services:
+  backend:
+    image: zmod-backend
+    ports:
+      - 3000:3000
+    environment:
+      - MONGODB_CONNSTRING=mongodb://mongo:27017/item_catalog
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - /Users/bill/github_projects/zModernization/backend/mongo_db:/data/db
+

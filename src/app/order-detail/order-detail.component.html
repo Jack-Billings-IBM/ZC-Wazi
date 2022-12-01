@@ -1,0 +1,8 @@
+<button [disabled]="!quantity"
+  (click)="onButtonClick()" class="button is-link is-fullwidth">
+Place Order
+</button>
+<div class="box">
+  <label>Quantity to order:</label>
+  <input type="number" #qtyEvent class="input" (input)="onQuantityEntered(qtyEvent.value)" />
+</div>

@@ -1,0 +1,60 @@
+<h2 class="title">
+  {{ phone.title }}
+</h2>
+<div class="ui items">
+  <div class="content">
+    <div class="image">
+      <img [src]="phone.imagePath">
+    </div>
+    <div class="description">
+      <p>{{ phone.content }}</p>
+    </div>
+  </div>
+</div>
+<div class="ui divider"></div>
+<div class="ui grid">
+  <div class="four wide column">
+    <div class="ui vertical fluid tabular menu">
+      <a class="item" [ngClass]="{active: subsystem === 'cics'}" (click)="subsystem = 'cics'">Inventory (CICS program)</a>
+      <a class="item" [ngClass]="{active: subsystem === 'dvm'}" (click)="subsystem = 'dvm'">Ships From (DVM data)</a>
+      <a class="item" [ngClass]="{active: subsystem === 'db2'}" (click)="subsystem = 'db2'">Size and Weight (DB2 table)</a>
+      <a class="item" [ngClass]="{active: subsystem === 'mongo'}" (click)="subsystem = 'mongo'">Misc (mongodb)</a>
+    </div>
+  </div>
+  <div class="twelve wide stretched column">
+    <div class="ui raised segment" *ngIf="subsystem === 'cics'">
+      <b>Inventory</b>
+      <p>Cost: {{ phone.cost | currency}}</p>
+      <p>In Stock: {{ phone.in_stock }}</p>
+      <p>On Order: {{ phone.on_order }}</p>
+    </div>
+    <div class="ui raised segment" *ngIf="subsystem === 'dvm'">
+      <b>Warehouse</b>
+      <p>City: {{ phone.city }}</p>
+      <p>State/Province: {{ phone.state }}</p>
+      <p>Country: {{ phone.country }}</p>
+      <p>Postal code: {{ phone.zipcode }}</p>
+    </div>
+    <div class="ui raised segment" *ngIf="subsystem === 'db2'">
+      <b>Dimensions</b>
+      <p>Width: {{ phone.DWIDTH }} mm</p>
+      <p>Height: {{ phone.DHEIGHT }} mm</p>
+      <p>Depth: {{ phone.DDEPTH }} mm</p>
+      <p>Weight: {{ phone.DWEIGHT }} grams</p>
+    </div>
+    <div class="ui raised segment" *ngIf="subsystem === 'mongo'">
+      <b>Storage and Memory</b>
+      <p>RAM: {{ phone.RAM }}</p>
+      <p>Internal Storage: {{ phone.internalStorage }}</p>
+      <br>
+      <b>Display</b>
+      <p>Screen size: {{ phone.screenSize }}</p>
+      <p>Resolution: {{ phone.screenResolution }}</p>
+    </div>
+  </div>
+</div>
+<div class="ui divider"></div>
+<div class="order" >
+  <app-order-detail [phone]="phone"></app-order-detail>
+</div>
+

@@ -1,0 +1,11 @@
+docker run --rm --network mynetwork --name mongo -d -p 27017:27017 -v /Users/bill/github_projects/zModernization/backend/mongo_db:/data/db mongo
+docker run --rm --network mynetwork -d -e MONGODB_CONNSTRING=mongodb+srv://bill:public55@cluster0.zcvy6.mongodb.net/item_catalog -p 3000:3000 zmod-backend
+docker run --rm --network mynetwork -d -e MONGODB_CONNSTRING=mongodb://mongo:27017/item_catalog -p 3000:3000 zmod-backend
+
+docker run --rm --network bills_network --name mongo -d -p 27017:27017 -v mongo_data_db:/data/db icr.io/ibmz/mongo:4.4.1
+docker run --rm --network bills_network -d -e MONGODB_CONNSTRING=mongodb://mongo:27017/item_catalog -p 3000:3000 node-api-concentrator
+docker run --rm --network bills_network -d -env-file envvars -p 3000:3000 node-api-concentrator
+
+
+mongorestore --uri mongodb://localhost:27017 /Users/bill/mongodb_files
+or just use MongoDBCompass to export/import collection documents

@@ -1,0 +1,42 @@
+<!-- <div *ngFor="let phone of phones" class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img [src]="phone.imagePath"/>
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media-content" >
+      <p class="title is-6">{{ phone.title }}</p>
+    </div>
+    <div class="content">
+      cost: {{ phone.cost }} <br>
+      in_stock: {{ phone.in_stock }}
+    </div>
+  </div>
+</div> -->
+
+
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Model</th>
+      <th>Cost</th>
+      <th>In Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let phone of phones">
+      <td>
+        <a
+          target="blank"
+          [href]="'/phones/'+ phone.itemID" class="thumb">
+          <img [src]="phone.imagePath"/>
+        </a>
+      </td>
+      <td>{{ phone.title }} </td>
+      <td>{{ phone.cost | currency }}</td>
+      <td align="right">{{ phone.in_stock }}</td>
+    </tr>
+  </tbody>
+</table>
